@@ -1,0 +1,52 @@
+{
+  "contact": {
+    "title": "اتصل بنا",
+    "subtitle": "تواصل مع فريقنا",
+    "description": "املأ النموذج أدناه لإرسال رسالة إلينا. الحقول المطلوبة مميزة بعلامة النجمة.",
+    "name": "الاسم",
+    "namePlaceholder": "أدخل اسمك",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "phone": "الهاتف",
+    "phonePlaceholder": "أدخل رقم هاتفك",
+    "subject": "الموضوع",
+    "subjectPlaceholder": "أدخل الموضوع",
+    "message": "الرسالة",
+    "messagePlaceholder": "أدخل رسالتك",
+    "send": "إرسال الرسالة",
+    "sending": "جاري الإرسال...",
+    "successMessage": "شكراً لتواصلك معنا! سنعود إليك قريباً.",
+    "errorMessage": "فشل إرسال الرسالة. يرجى المحاولة مرة أخرى."
+  },
+  "auth": {
+    "login": "تسجيل الدخول",
+    "signup": "إنشاء حساب",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "password": "كلمة المرور",
+    "passwordPlaceholder": "أدخل كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "confirmPasswordPlaceholder": "أكد كلمة المرور",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "noAccount": "ليس لديك حساب؟",
+    "hasAccount": "لديك حساب بالفعل؟",
+    "signInWithGoogle": "تسجيل الدخول باستخدام جوجل",
+    "signUpWithGoogle": "إنشاء حساب باستخدام جوجل",
+    "or": "أو",
+    "loginSuccess": "تم تسجيل الدخول بنجاح",
+    "signupSuccess": "تم إنشاء الحساب بنجاح",
+    "loginError": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
+    "signupError": "فشل إنشاء الحساب",
+    "passwordMismatch": "كلمات المرور غير متطابقة"
+  },
+  "validation": {
+    "required": "هذا الحقل مطلوب",
+    "invalidEmail": "يرجى إدخال عنوان بريد إلكتروني صالح",
+    "minLength": "يجب أن يكون {{count}} أحرف على الأقل",
+    "maxLength": "يجب أن يكون {{count}} أحرف على الأكثر",
+    "passwordMin": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+    "nameMin": "يجب أن يكون الاسم حرفين على الأقل",
+    "subjectMin": "يجب أن يكون الموضوع 5 أحرف على الأقل",
+    "messageMin": "يجب أن تكون الرسالة 10 أحرف على الأقل"
+  }
+}

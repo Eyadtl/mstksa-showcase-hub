@@ -1,0 +1,206 @@
+{
+  "dashboard": {
+    "title": "نظرة عامة على لوحة التحكم",
+    "welcome": "مرحباً بك في لوحة التحكم",
+    "statistics": {
+      "title": "الإحصائيات",
+      "totalCatalogs": "إجمالي الكتالوجات",
+      "totalCategories": "إجمالي الفئات",
+      "totalSubmissions": "طلبات التواصل",
+      "newSubmissions": "الطلبات الجديدة"
+    },
+    "recentSubmissions": {
+      "title": "طلبات التواصل الأخيرة",
+      "viewAll": "عرض جميع الطلبات",
+      "noSubmissions": "لا توجد طلبات بعد",
+      "from": "من",
+      "subject": "الموضوع",
+      "date": "التاريخ",
+      "status": {
+        "new": "جديد",
+        "read": "مقروء",
+        "responded": "تم الرد"
+      }
+    },
+    "quickActions": {
+      "title": "إجراءات سريعة",
+      "uploadCatalog": "رفع كتالوج جديد",
+      "addCategory": "إضافة فئة",
+      "viewSubmissions": "عرض الطلبات",
+      "manageCatalogs": "إدارة الكتالوجات"
+    },
+    "loading": "جاري تحميل بيانات لوحة التحكم...",
+    "error": "فشل تحميل بيانات لوحة التحكم. يرجى المحاولة مرة أخرى."
+  },
+  "categories": {
+    "title": "الفئات",
+    "description": "إدارة فئات المنتجات لتنظيم الكتالوجات",
+    "addCategory": "إضافة فئة",
+    "editCategory": "تعديل الفئة",
+    "deleteCategory": "حذف الفئة",
+    "tableTitle": "جميع الفئات",
+    "tableDescription": "{{count}} فئة إجمالاً",
+    "tableDescriptionEmpty": "لا توجد فئات بعد",
+    "table": {
+      "nameEn": "الاسم (إنجليزي)",
+      "nameAr": "الاسم (عربي)",
+      "slug": "المعرف",
+      "createdAt": "تاريخ الإنشاء",
+      "actions": "الإجراءات"
+    },
+    "emptyState": {
+      "title": "لا توجد فئات بعد",
+      "description": "ابدأ بإنشاء فئتك الأولى لتنظيم الكتالوجات"
+    },
+    "deleteDialog": {
+      "title": "حذف الفئة",
+      "description": "هل أنت متأكد من حذف \"{{name}}\"؟ لا يمكن التراجع عن هذا الإجراء.",
+      "confirm": "حذف",
+      "cancel": "إلغاء",
+      "deleting": "جاري الحذف..."
+    },
+    "deleteSuccess": "تم حذف الفئة بنجاح",
+    "deleteError": "فشل حذف الفئة. يرجى المحاولة مرة أخرى.",
+    "deleteErrorHasCatalogs": "لا يمكن حذف فئة تحتوي على كتالوجات. يرجى إزالة أو إعادة تعيين الكتالوجات أولاً.",
+    "loadError": "فشل تحميل الفئات. يرجى المحاولة مرة أخرى.",
+    "addComingSoon": "نافذة إضافة الفئة قريباً (المهمة 14)",
+    "editComingSoon": "نافذة تعديل الفئة قريباً (المهمة 14)",
+    "dialog": {
+      "createTitle": "إضافة فئة جديدة",
+      "editTitle": "تعديل الفئة",
+      "nameEn": "الاسم (إنجليزي)",
+      "nameEnPlaceholder": "أدخل اسم الفئة بالإنجليزية",
+      "nameAr": "الاسم (عربي)",
+      "nameArPlaceholder": "أدخل اسم الفئة بالعربية",
+      "slug": "المعرف",
+      "slugHelp": "يتم إنشاؤه تلقائياً من الاسم الإنجليزي",
+      "cancel": "إلغاء",
+      "save": "حفظ الفئة",
+      "saving": "جاري الحفظ...",
+      "validation": {
+        "nameEnRequired": "الاسم الإنجليزي مطلوب",
+        "nameEnMin": "يجب أن يكون الاسم الإنجليزي حرفين على الأقل",
+        "nameArRequired": "الاسم العربي مطلوب",
+        "nameArMin": "يجب أن يكون الاسم العربي حرفين على الأقل"
+      }
+    },
+    "createSuccess": "تم إنشاء الفئة بنجاح",
+    "createError": "فشل إنشاء الفئة. يرجى المحاولة مرة أخرى.",
+    "updateSuccess": "تم تحديث الفئة بنجاح",
+    "updateError": "فشل تحديث الفئة. يرجى المحاولة مرة أخرى."
+  },
+  "catalogs": {
+    "title": "الكتالوجات",
+    "description": "إدارة كتالوجات المنتجات ومستندات PDF",
+    "uploadCatalog": "رفع كتالوج",
+    "editCatalog": "تعديل الكتالوج",
+    "deleteCatalog": "حذف الكتالوج",
+    "tableTitle": "جميع الكتالوجات",
+    "tableDescription": "{{count}} كتالوج إجمالاً",
+    "tableDescriptionEmpty": "لا توجد كتالوجات بعد",
+    "search": "البحث في الكتالوجات...",
+    "filterByCategory": "تصفية حسب الفئة",
+    "allCategories": "جميع الفئات",
+    "table": {
+      "thumbnail": "الصورة المصغرة",
+      "titleEn": "العنوان (إنجليزي)",
+      "titleAr": "العنوان (عربي)",
+      "category": "الفئة",
+      "fileSize": "حجم الملف",
+      "createdAt": "تاريخ الإنشاء",
+      "actions": "الإجراءات"
+    },
+    "emptyState": {
+      "title": "لا توجد كتالوجات بعد",
+      "description": "ابدأ برفع كتالوج منتجاتك الأول"
+    },
+    "deleteDialog": {
+      "title": "حذف الكتالوج",
+      "description": "هل أنت متأكد من حذف \"{{name}}\"؟ سيؤدي هذا إلى إزالة ملف PDF والصورة المصغرة. لا يمكن التراجع عن هذا الإجراء.",
+      "confirm": "حذف",
+      "cancel": "إلغاء",
+      "deleting": "جاري الحذف..."
+    },
+    "deleteSuccess": "تم حذف الكتالوج بنجاح",
+    "deleteError": "فشل حذف الكتالوج. يرجى المحاولة مرة أخرى.",
+    "loadError": "فشل تحميل الكتالوجات. يرجى المحاولة مرة أخرى.",
+    "uploadComingSoon": "نافذة رفع الكتالوج قريباً (المهمة 17)",
+    "editComingSoon": "نافذة تعديل الكتالوج قريباً (المهمة 17)",
+    "dialog": {
+      "createTitle": "رفع كتالوج جديد",
+      "editTitle": "تعديل الكتالوج",
+      "titleEn": "العنوان (إنجليزي)",
+      "titleEnPlaceholder": "أدخل عنوان الكتالوج بالإنجليزية",
+      "titleAr": "العنوان (عربي)",
+      "titleArPlaceholder": "أدخل عنوان الكتالوج بالعربية",
+      "category": "الفئة",
+      "categoryPlaceholder": "اختر فئة",
+      "pdfFile": "ملف PDF",
+      "pdfUploadText": "اسحب وأفلت ملف PDF هنا",
+      "pdfUploadHint": "أو انقر للتصفح (الحد الأقصى 10 ميجابايت)",
+      "pdfEditHint": "اتركه فارغاً للاحتفاظ بملف PDF الحالي",
+      "thumbnail": "الصورة المصغرة",
+      "thumbnailUploadText": "اسحب وأفلت الصورة المصغرة هنا",
+      "thumbnailUploadHint": "PNG أو JPG أو WebP (الحد الأقصى 2 ميجابايت)",
+      "thumbnailEditHint": "اتركه فارغاً للاحتفاظ بالصورة المصغرة الحالية",
+      "selectFile": "اختر ملف",
+      "uploading": "جاري الرفع...",
+      "cancel": "إلغاء",
+      "save": "حفظ الكتالوج",
+      "saving": "جاري الحفظ...",
+      "validation": {
+        "titleEnRequired": "العنوان الإنجليزي مطلوب",
+        "titleEnMin": "يجب أن يكون العنوان الإنجليزي 3 أحرف على الأقل",
+        "titleArRequired": "العنوان العربي مطلوب",
+        "titleArMin": "يجب أن يكون العنوان العربي 3 أحرف على الأقل",
+        "categoryRequired": "الفئة مطلوبة",
+        "pdfRequired": "ملف PDF مطلوب",
+        "pdfType": "يُسمح فقط بملفات PDF",
+        "pdfSize": "يجب أن يكون حجم ملف PDF أقل من 10 ميجابايت",
+        "thumbnailRequired": "الصورة المصغرة مطلوبة",
+        "thumbnailType": "يُسمح فقط بصور PNG و JPG و WebP",
+        "thumbnailSize": "يجب أن يكون حجم الصورة المصغرة أقل من 2 ميجابايت"
+      }
+    },
+    "createSuccess": "تم رفع الكتالوج بنجاح",
+    "createError": "فشل رفع الكتالوج. يرجى المحاولة مرة أخرى.",
+    "updateSuccess": "تم تحديث الكتالوج بنجاح",
+    "updateError": "فشل تحديث الكتالوج. يرجى المحاولة مرة أخرى."
+  },
+  "contactSubmissions": {
+    "title": "طلبات التواصل",
+    "description": "عرض وإدارة طلبات التواصل من زوار الموقع",
+    "tableTitle": "جميع الطلبات",
+    "tableDescription": "{{count}} طلب إجمالاً",
+    "tableDescriptionEmpty": "لا توجد طلبات بعد",
+    "search": "البحث بالاسم أو البريد الإلكتروني أو الموضوع...",
+    "table": {
+      "date": "التاريخ",
+      "name": "الاسم",
+      "email": "البريد الإلكتروني",
+      "phone": "الهاتف",
+      "subject": "الموضوع",
+      "status": "الحالة",
+      "actions": "الإجراءات"
+    },
+    "status": {
+      "new": "جديد",
+      "read": "مقروء",
+      "responded": "تم الرد"
+    },
+    "markAsRead": "وضع علامة كمقروء",
+    "markAsReadSuccess": "تم وضع علامة على الطلب كمقروء",
+    "markAsReadError": "فشل وضع علامة على الطلب كمقروء. يرجى المحاولة مرة أخرى.",
+    "details": {
+      "submittedAt": "تاريخ الإرسال",
+      "readAt": "تاريخ القراءة",
+      "message": "الرسالة"
+    },
+    "emptyState": {
+      "title": "لا توجد طلبات بعد",
+      "description": "ستظهر طلبات التواصل هنا",
+      "noResults": "لا توجد طلبات تطابق بحثك"
+    },
+    "loadError": "فشل تحميل الطلبات. يرجى المحاولة مرة أخرى."
+  }
+}

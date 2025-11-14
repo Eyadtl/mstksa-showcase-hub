@@ -1,0 +1,19 @@
+{
+  "home": "Home",
+  "catalogs": "Catalogs",
+  "about": "About",
+  "contact": "Contact Us",
+  "admin": "Admin Dashboard",
+  "login": "Login",
+  "logout": "Logout",
+  "language": "Language",
+  "theme": "Theme",
+  "lightMode": "Light Mode",
+  "darkMode": "Dark Mode",
+  "dashboard": "Dashboard",
+  "categories": "Categories",
+  "contactSubmissions": "Contact Submissions",
+  "mainNavigation": "Main navigation",
+  "mobileMenu": "Mobile menu",
+  "toggleSidebar": "Toggle sidebar"
+}

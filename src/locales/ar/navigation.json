@@ -1,0 +1,19 @@
+{
+  "home": "الرئيسية",
+  "catalogs": "الكتالوجات",
+  "about": "من نحن",
+  "contact": "اتصل بنا",
+  "admin": "لوحة الإدارة",
+  "login": "تسجيل الدخول",
+  "logout": "تسجيل الخروج",
+  "language": "اللغة",
+  "theme": "المظهر",
+  "lightMode": "الوضع الفاتح",
+  "darkMode": "الوضع الداكن",
+  "dashboard": "لوحة التحكم",
+  "categories": "الفئات",
+  "contactSubmissions": "رسائل التواصل",
+  "mainNavigation": "التنقل الرئيسي",
+  "mobileMenu": "قائمة الجوال",
+  "toggleSidebar": "تبديل الشريط الجانبي"
+}

@@ -1,0 +1,53 @@
+{
+  "hero": {
+    "title": "MST-KSA",
+    "subtitle": "تصنيع الصلب الدقيق للعالم الحديث",
+    "description": "تقديم جودة استثنائية في منتجات الصلب، موثوق بها من قبل قادة الصناعة في جميع أنحاء المملكة العربية السعودية",
+    "viewCatalogs": "عرض كتالوجاتنا"
+  },
+  "services": {
+    "title": "خدماتنا",
+    "subtitle": "تصنيع جميع أنواع المنتجات الضرورية المصنوعة من الصلب",
+    "expertManufacturing": {
+      "title": "التصنيع الخبير",
+      "description": "مرافق حديثة تنتج جميع أنواع منتجات الصلب الأساسية بدقة وجودة."
+    },
+    "qualityAssurance": {
+      "title": "ضمان الجودة",
+      "description": "عمليات صارمة لمراقبة الجودة تضمن أن كل منتج يلبي المعايير الدولية."
+    },
+    "industryInnovation": {
+      "title": "الابتكار الصناعي",
+      "description": "التطوير المستمر لتقنياتنا لتقديم حلول صلب متفوقة للتطبيقات الحديثة."
+    }
+  },
+  "metrics": {
+    "title": "سجلنا الحافل",
+    "yearsInBusiness": "سنوات في العمل",
+    "projectsCompleted": "المشاريع المنجزة",
+    "satisfiedClients": "العملاء الراضون"
+  },
+  "footer": {
+    "description": "شركة رائدة في تصنيع الصلب متخصصة في منتجات الصلب الأساسية لمختلف الصناعات.",
+    "contactInfo": "معلومات الاتصال",
+    "address": "المنطقة الصناعية، الرياض، المملكة العربية السعودية",
+    "phone": "+966 XX XXX XXXX",
+    "email": "info@mst-ksa.com",
+    "followUs": "تابعنا",
+    "copyright": "© {{year}} MST-KSA. جميع الحقوق محفوظة.",
+    "socialLabels": {
+      "facebook": "فيسبوك",
+      "linkedin": "لينكد إن",
+      "twitter": "تويتر"
+    }
+  },
+  "accessibility": {
+    "skipToMain": "الانتقال إلى المحتوى الرئيسي",
+    "skipToNav": "الانتقال إلى التنقل",
+    "openMenu": "فتح قائمة التنقل",
+    "closeMenu": "إغلاق قائمة التنقل",
+    "toggleTheme": "تبديل السمة",
+    "toggleLanguage": "تبديل اللغة",
+    "companyLogo": "شعار شركة MST-KSA"
+  }
+}

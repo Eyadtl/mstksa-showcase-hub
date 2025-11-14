@@ -1,0 +1,401 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useAuth } from '@/contexts/AuthContext';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { useToast } from '@/hooks/use-toast';
+import { Loader2 } from 'lucide-react';
+import { SEO } from '@/components/SEO';
+import { EnvDebug } from '@/components/EnvDebug';
+
+/**
+ * Authentication page component with tabbed interface for Login and Sign Up
+ * Provides email/password authentication and Google OAuth
+ */
+const Auth = () => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const { signIn, signUp, signInWithGoogle } = useAuth();
+  const { toast } = useToast();
+
+  // Form state for login
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
+  const [loginLoading, setLoginLoading] = useState(false);
+
+  // Form state for sign up
+  const [signUpEmail, setSignUpEmail] = useState('');
+  const [signUpPassword, setSignUpPassword] = useState('');
+  const [signUpLoading, setSignUpLoading] = useState(false);
+
+  // Google OAuth loading state
+  const [googleLoading, setGoogleLoading] = useState(false);
+
+  // Validation errors
+  const [loginErrors, setLoginErrors] = useState<{ email?: string; password?: string }>({});
+  const [signUpErrors, setSignUpErrors] = useState<{ email?: string; password?: string }>({});
+
+  /**
+   * Validate email format
+   */
+  const validateEmail = (email: string): string | undefined => {
+    if (!email) {
+      return 'Email is required';
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return 'Please enter a valid email address';
+    }
+    return undefined;
+  };
+
+  /**
+   * Validate password length
+   */
+  const validatePassword = (password: string): string | undefined => {
+    if (!password) {
+      return 'Password is required';
+    }
+    if (password.length < 8) {
+      return 'Password must be at least 8 characters';
+    }
+    return undefined;
+  };
+
+  /**
+   * Handle login form submission
+   */
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Validate form
+    const emailError = validateEmail(loginEmail);
+    const passwordError = validatePassword(loginPassword);
+
+    if (emailError || passwordError) {
+      setLoginErrors({
+        email: emailError,
+        password: passwordError,
+      });
+      return;
+    }
+
+    // Clear errors
+    setLoginErrors({});
+    setLoginLoading(true);
+
+    try {
+      await signIn(loginEmail, loginPassword);
+      toast({
+        title: 'Success',
+        description: 'You have successfully logged in',
+      });
+      navigate('/admin/dashboard');
+    } catch (error) {
+      toast({
+        variant: 'destructive',
+        title: 'Login Failed',
+        description: error instanceof Error ? error.message : 'Invalid email or password',
+      });
+    } finally {
+      setLoginLoading(false);
+    }
+  };
+
+  /**
+   * Handle sign up form submission
+   */
+  const handleSignUp = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Validate form
+    const emailError = validateEmail(signUpEmail);
+    const passwordError = validatePassword(signUpPassword);
+
+    if (emailError || passwordError) {
+      setSignUpErrors({
+        email: emailError,
+        password: passwordError,
+      });
+      return;
+    }
+
+    // Clear errors
+    setSignUpErrors({});
+    setSignUpLoading(true);
+
+    try {
+      await signUp(signUpEmail, signUpPassword);
+      toast({
+        title: 'Success',
+        description: 'Your account has been created successfully',
+      });
+      navigate('/admin/dashboard');
+    } catch (error) {
+      toast({
+        variant: 'destructive',
+        title: 'Sign Up Failed',
+        description: error instanceof Error ? error.message : 'Failed to create account',
+      });
+    } finally {
+      setSignUpLoading(false);
+    }
+  };
+
+  /**
+   * Handle Google OAuth sign in
+   */
+  const handleGoogleSignIn = async () => {
+    setGoogleLoading(true);
+
+    try {
+      await signInWithGoogle();
+      // Note: User will be redirected to Google OAuth consent screen
+      // After successful auth, they will be redirected back to /admin/dashboard
+    } catch (error) {
+      toast({
+        variant: 'destructive',
+        title: 'Google Sign In Failed',
+        description: error instanceof Error ? error.message : 'Failed to sign in with Google',
+      });
+      setGoogleLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-4">
+      <SEO
+        title={t('seo.auth.title', { defaultValue: 'Admin Login' })}
+        description={t('seo.auth.description', { defaultValue: 'Secure login portal for MST-KSA administrators to manage website content, catalogs, and customer inquiries.' })}
+        noindex={true}
+      />
+      <Card className="w-full max-w-md">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-2xl font-bold text-center">Welcome</CardTitle>
+          <CardDescription className="text-center">
+            Sign in to access the admin dashboard
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Tabs defaultValue="login" className="w-full">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="login">Login</TabsTrigger>
+              <TabsTrigger value="signup">Sign Up</TabsTrigger>
+            </TabsList>
+
+            {/* Login Tab */}
+            <TabsContent value="login">
+              <form onSubmit={handleLogin} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="login-email">Email</Label>
+                  <Input
+                    id="login-email"
+                    type="email"
+                    placeholder="name@example.com"
+                    value={loginEmail}
+                    onChange={(e) => {
+                      setLoginEmail(e.target.value);
+                      setLoginErrors((prev) => ({ ...prev, email: undefined }));
+                    }}
+                    disabled={loginLoading}
+                    className={loginErrors.email ? 'border-red-500' : ''}
+                  />
+                  {loginErrors.email && (
+                    <p className="text-sm text-red-500">{loginErrors.email}</p>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="login-password">Password</Label>
+                  <Input
+                    id="login-password"
+                    type="password"
+                    placeholder="Enter your password"
+                    value={loginPassword}
+                    onChange={(e) => {
+                      setLoginPassword(e.target.value);
+                      setLoginErrors((prev) => ({ ...prev, password: undefined }));
+                    }}
+                    disabled={loginLoading}
+                    className={loginErrors.password ? 'border-red-500' : ''}
+                  />
+                  {loginErrors.password && (
+                    <p className="text-sm text-red-500">{loginErrors.password}</p>
+                  )}
+                </div>
+
+                <Button type="submit" className="w-full" disabled={loginLoading}>
+                  {loginLoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Signing in...
+                    </>
+                  ) : (
+                    'Sign In'
+                  )}
+                </Button>
+
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <span className="w-full border-t" />
+                  </div>
+                  <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-background px-2 text-muted-foreground">
+                      Or continue with
+                    </span>
+                  </div>
+                </div>
+
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="w-full"
+                  onClick={handleGoogleSignIn}
+                  disabled={googleLoading || loginLoading}
+                >
+                  {googleLoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Connecting...
+                    </>
+                  ) : (
+                    <>
+                      <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
+                        <path
+                          d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                          fill="#4285F4"
+                        />
+                        <path
+                          d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                          fill="#34A853"
+                        />
+                        <path
+                          d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                          fill="#FBBC05"
+                        />
+                        <path
+                          d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                          fill="#EA4335"
+                        />
+                      </svg>
+                      Sign in with Google
+                    </>
+                  )}
+                </Button>
+              </form>
+            </TabsContent>
+
+            {/* Sign Up Tab */}
+            <TabsContent value="signup">
+              <form onSubmit={handleSignUp} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="signup-email">Email</Label>
+                  <Input
+                    id="signup-email"
+                    type="email"
+                    placeholder="name@example.com"
+                    value={signUpEmail}
+                    onChange={(e) => {
+                      setSignUpEmail(e.target.value);
+                      setSignUpErrors((prev) => ({ ...prev, email: undefined }));
+                    }}
+                    disabled={signUpLoading}
+                    className={signUpErrors.email ? 'border-red-500' : ''}
+                  />
+                  {signUpErrors.email && (
+                    <p className="text-sm text-red-500">{signUpErrors.email}</p>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="signup-password">Password</Label>
+                  <Input
+                    id="signup-password"
+                    type="password"
+                    placeholder="Create a password (min. 8 characters)"
+                    value={signUpPassword}
+                    onChange={(e) => {
+                      setSignUpPassword(e.target.value);
+                      setSignUpErrors((prev) => ({ ...prev, password: undefined }));
+                    }}
+                    disabled={signUpLoading}
+                    className={signUpErrors.password ? 'border-red-500' : ''}
+                  />
+                  {signUpErrors.password && (
+                    <p className="text-sm text-red-500">{signUpErrors.password}</p>
+                  )}
+                </div>
+
+                <Button type="submit" className="w-full" disabled={signUpLoading}>
+                  {signUpLoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Creating account...
+                    </>
+                  ) : (
+                    'Create Account'
+                  )}
+                </Button>
+
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <span className="w-full border-t" />
+                  </div>
+                  <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-background px-2 text-muted-foreground">
+                      Or continue with
+                    </span>
+                  </div>
+                </div>
+
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="w-full"
+                  onClick={handleGoogleSignIn}
+                  disabled={googleLoading || signUpLoading}
+                >
+                  {googleLoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Connecting...
+                    </>
+                  ) : (
+                    <>
+                      <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
+                        <path
+                          d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                          fill="#4285F4"
+                        />
+                        <path
+                          d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                          fill="#34A853"
+                        />
+                        <path
+                          d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                          fill="#FBBC05"
+                        />
+                        <path
+                          d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                          fill="#EA4335"
+                        />
+                      </svg>
+                      Sign up with Google
+                    </>
+                  )}
+                </Button>
+              </form>
+            </TabsContent>
+          </Tabs>
+        </CardContent>
+      </Card>
+      <EnvDebug />
+    </div>
+  );
+};
+
+export default Auth;

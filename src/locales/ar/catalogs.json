@@ -1,0 +1,33 @@
+{
+  "title": "كتالوجاتنا",
+  "subtitle": "تصفح مجموعتنا الشاملة من منتجات الصلب",
+  "search": "البحث في الكتالوجات...",
+  "searchPlaceholder": "البحث بالعنوان أو الفئة",
+  "filterByCategory": "تصفية حسب الفئة",
+  "allCategories": "جميع الفئات",
+  "noCatalogs": "لم يتم العثور على كتالوجات",
+  "noCatalogsDescription": "حاول تعديل معايير البحث أو التصفية",
+  "loading": "جاري تحميل الكتالوجات...",
+  "viewPDF": "عرض PDF",
+  "download": "تحميل",
+  "category": "الفئة",
+  "fileSize": "حجم الملف",
+  "uploadedOn": "تم الرفع في",
+  "pdfViewer": {
+    "title": "عارض PDF",
+    "zoomIn": "تكبير",
+    "zoomOut": "تصغير",
+    "download": "تحميل",
+    "print": "طباعة",
+    "share": "مشاركة",
+    "close": "إغلاق",
+    "loading": "جاري تحميل PDF...",
+    "error": "فشل تحميل PDF",
+    "linkCopied": "تم نسخ الرابط إلى الحافظة",
+    "controls": "عناصر التحكم في عارض PDF",
+    "description": "عارض مستندات PDF مع خيارات التكبير والتحميل والطباعة والمشاركة"
+  },
+  "searchAndFilter": "البحث والتصفية في الكتالوجات",
+  "catalogList": "قائمة الكتالوجات",
+  "thumbnailFor": "صورة مصغرة لـ"
+}

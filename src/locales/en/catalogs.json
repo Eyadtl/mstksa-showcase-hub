@@ -1,0 +1,33 @@
+{
+  "title": "Our Catalogs",
+  "subtitle": "Browse our comprehensive collection of steel products",
+  "search": "Search catalogs...",
+  "searchPlaceholder": "Search by title or category",
+  "filterByCategory": "Filter by Category",
+  "allCategories": "All Categories",
+  "noCatalogs": "No catalogs found",
+  "noCatalogsDescription": "Try adjusting your search or filter criteria",
+  "loading": "Loading catalogs...",
+  "viewPDF": "View PDF",
+  "download": "Download",
+  "category": "Category",
+  "fileSize": "File Size",
+  "uploadedOn": "Uploaded On",
+  "pdfViewer": {
+    "title": "PDF Viewer",
+    "zoomIn": "Zoom In",
+    "zoomOut": "Zoom Out",
+    "download": "Download",
+    "print": "Print",
+    "share": "Share",
+    "close": "Close",
+    "loading": "Loading PDF...",
+    "error": "Failed to load PDF",
+    "linkCopied": "Link copied to clipboard",
+    "controls": "PDF viewer controls",
+    "description": "PDF document viewer with zoom, download, print, and share options"
+  },
+  "searchAndFilter": "Search and filter catalogs",
+  "catalogList": "Catalog list",
+  "thumbnailFor": "Thumbnail for"
+}

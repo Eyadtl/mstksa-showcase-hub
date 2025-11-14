@@ -1,66 +1,63 @@
-import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
+import { LogoCloud } from "@/components/ui/logo-cloud-3";
+
+const logos = [
+  {
+    src: "https://svgl.app/library/nvidia-wordmark-light.svg",
+    alt: "Nvidia Logo",
+  },
+  {
+    src: "https://svgl.app/library/supabase_wordmark_light.svg",
+    alt: "Supabase Logo",
+  },
+  {
+    src: "https://svgl.app/library/openai_wordmark_light.svg",
+    alt: "OpenAI Logo",
+  },
+  {
+    src: "https://svgl.app/library/turso-wordmark-light.svg",
+    alt: "Turso Logo",
+  },
+  {
+    src: "https://svgl.app/library/vercel_wordmark.svg",
+    alt: "Vercel Logo",
+  },
+  {
+    src: "https://svgl.app/library/github_wordmark_light.svg",
+    alt: "GitHub Logo",
+  },
+  {
+    src: "https://svgl.app/library/claude-ai-wordmark-icon_light.svg",
+    alt: "Claude AI Logo",
+  },
+  {
+    src: "https://svgl.app/library/clerk-wordmark-light.svg",
+    alt: "Clerk Logo",
+  },
+];
 
 const ClientsCarousel = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  
-  // Placeholder client logos - these would be replaced with actual logos
-  const clients = [
-    { name: "Sisko", logo: "SISKO" },
-    { name: "Aramco", logo: "ARAMCO" },
-    { name: "Ladin", logo: "LADIN" },
-    { name: "Sadia", logo: "SADIA" },
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % clients.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [clients.length]);
-
   return (
-    <section className="py-16 bg-muted">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 brand-serif">
-          Trusted by Industry Leaders
+    <div className="min-h-[300px] w-full place-content-center bg-muted py-16">
+      <div
+        aria-hidden="true"
+        className={cn(
+          "-z-10 -top-1/2 -translate-x-1/2 pointer-events-none absolute left-1/2 h-[120vmin] w-[120vmin] rounded-b-full",
+          "bg-[radial-gradient(ellipse_at_center,hsl(var(--foreground)/.1),transparent_50%)]",
+          "blur-[30px]"
+        )}
+      />
+      <section className="relative mx-auto max-w-3xl px-4" aria-labelledby="clients-heading">
+        <h2 id="clients-heading" className="mb-5 text-center font-medium text-foreground text-xl tracking-tight md:text-3xl">
+          <span className="text-muted-foreground">Trusted by experts.</span>
+          <br />
+          <span className="font-semibold">Used by the leaders.</span>
         </h2>
-        
-        <div className="relative overflow-hidden">
-          <div className="flex transition-transform duration-500 ease-in-out gap-8 justify-center items-center">
-            {clients.map((client, index) => (
-              <div
-                key={client.name}
-                className={`flex-shrink-0 transition-all duration-500 ${
-                  index === currentIndex ? "scale-110 opacity-100" : "scale-90 opacity-50"
-                }`}
-              >
-                <div className="w-48 h-32 bg-card rounded-lg shadow-md flex items-center justify-center border border-border">
-                  <span className="text-2xl font-bold text-foreground/70 brand-serif">
-                    {client.logo}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Navigation dots */}
-        <div className="flex justify-center mt-8 gap-2">
-          {clients.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`w-3 h-3 rounded-full transition-all ${
-                index === currentIndex
-                  ? "bg-primary w-8"
-                  : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
+        <div className="mx-auto my-5 h-px max-w-sm bg-border [mask-image:linear-gradient(to_right,transparent,black,transparent)] rtl:[mask-image:linear-gradient(to_left,transparent,black,transparent)]" aria-hidden="true" />
+        <LogoCloud logos={logos} className="rtl:direction-rtl" />
+        <div className="mt-5 h-px bg-border [mask-image:linear-gradient(to_right,transparent,black,transparent)] rtl:[mask-image:linear-gradient(to_left,transparent,black,transparent)]" aria-hidden="true" />
+      </section>
+    </div>
   );
 };
 

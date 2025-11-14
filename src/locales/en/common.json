@@ -1,0 +1,53 @@
+{
+  "hero": {
+    "title": "MST-KSA",
+    "subtitle": "Precision Steel Manufacturing for the Modern World",
+    "description": "Delivering exceptional quality in steel products, trusted by industry leaders across Saudi Arabia",
+    "viewCatalogs": "View Our Catalogs"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Manufacturing all types of necessary products made with steel",
+    "expertManufacturing": {
+      "title": "Expert Manufacturing",
+      "description": "State-of-the-art facilities producing all types of essential steel products with precision and quality."
+    },
+    "qualityAssurance": {
+      "title": "Quality Assurance",
+      "description": "Rigorous quality control processes ensuring every product meets international standards."
+    },
+    "industryInnovation": {
+      "title": "Industry Innovation",
+      "description": "Continuously advancing our techniques to deliver superior steel solutions for modern applications."
+    }
+  },
+  "metrics": {
+    "title": "Our Track Record",
+    "yearsInBusiness": "Years in Business",
+    "projectsCompleted": "Projects Completed",
+    "satisfiedClients": "Satisfied Clients"
+  },
+  "footer": {
+    "description": "Premier steel manufacturing company specializing in essential steel products for diverse industries.",
+    "contactInfo": "Contact Information",
+    "address": "Industrial Area, Riyadh, Saudi Arabia",
+    "phone": "+966 XX XXX XXXX",
+    "email": "info@mst-ksa.com",
+    "followUs": "Follow Us",
+    "copyright": "© {{year}} MST-KSA. All rights reserved.",
+    "socialLabels": {
+      "facebook": "Facebook",
+      "linkedin": "LinkedIn",
+      "twitter": "Twitter"
+    }
+  },
+  "accessibility": {
+    "skipToMain": "Skip to main content",
+    "skipToNav": "Skip to navigation",
+    "openMenu": "Open navigation menu",
+    "closeMenu": "Close navigation menu",
+    "toggleTheme": "Toggle theme",
+    "toggleLanguage": "Toggle language",
+    "companyLogo": "MST-KSA Company Logo"
+  }
+}

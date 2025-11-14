@@ -1,0 +1,52 @@
+{
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch with our team",
+    "description": "Fill out the form below to send us a message. Required fields are marked with an asterisk.",
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "phone": "Phone",
+    "phonePlaceholder": "Enter your phone number",
+    "subject": "Subject",
+    "subjectPlaceholder": "Enter subject",
+    "message": "Message",
+    "messagePlaceholder": "Enter your message",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "successMessage": "Thank you for contacting us! We'll get back to you soon.",
+    "errorMessage": "Failed to send message. Please try again."
+  },
+  "auth": {
+    "login": "Login",
+    "signup": "Sign Up",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Confirm your password",
+    "forgotPassword": "Forgot Password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "signInWithGoogle": "Sign in with Google",
+    "signUpWithGoogle": "Sign up with Google",
+    "or": "OR",
+    "loginSuccess": "Logged in successfully",
+    "signupSuccess": "Account created successfully",
+    "loginError": "Invalid email or password",
+    "signupError": "Failed to create account",
+    "passwordMismatch": "Passwords do not match"
+  },
+  "validation": {
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address",
+    "minLength": "Must be at least {{count}} characters",
+    "maxLength": "Must be at most {{count}} characters",
+    "passwordMin": "Password must be at least 8 characters",
+    "nameMin": "Name must be at least 2 characters",
+    "subjectMin": "Subject must be at least 5 characters",
+    "messageMin": "Message must be at least 10 characters"
+  }
+}

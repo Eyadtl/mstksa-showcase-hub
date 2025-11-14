@@ -1,0 +1,206 @@
+{
+  "dashboard": {
+    "title": "Dashboard Overview",
+    "welcome": "Welcome to Admin Dashboard",
+    "statistics": {
+      "title": "Statistics",
+      "totalCatalogs": "Total Catalogs",
+      "totalCategories": "Total Categories",
+      "totalSubmissions": "Contact Submissions",
+      "newSubmissions": "New Submissions"
+    },
+    "recentSubmissions": {
+      "title": "Recent Contact Submissions",
+      "viewAll": "View All Submissions",
+      "noSubmissions": "No submissions yet",
+      "from": "From",
+      "subject": "Subject",
+      "date": "Date",
+      "status": {
+        "new": "New",
+        "read": "Read",
+        "responded": "Responded"
+      }
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "uploadCatalog": "Upload New Catalog",
+      "addCategory": "Add Category",
+      "viewSubmissions": "View Submissions",
+      "manageCatalogs": "Manage Catalogs"
+    },
+    "loading": "Loading dashboard data...",
+    "error": "Failed to load dashboard data. Please try again."
+  },
+  "categories": {
+    "title": "Categories",
+    "description": "Manage product categories for organizing catalogs",
+    "addCategory": "Add Category",
+    "editCategory": "Edit category",
+    "deleteCategory": "Delete category",
+    "tableTitle": "All Categories",
+    "tableDescription": "{{count}} categories total",
+    "tableDescriptionEmpty": "No categories yet",
+    "table": {
+      "nameEn": "Name (English)",
+      "nameAr": "Name (Arabic)",
+      "slug": "Slug",
+      "createdAt": "Created",
+      "actions": "Actions"
+    },
+    "emptyState": {
+      "title": "No categories yet",
+      "description": "Get started by creating your first category to organize catalogs"
+    },
+    "deleteDialog": {
+      "title": "Delete Category",
+      "description": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone.",
+      "confirm": "Delete",
+      "cancel": "Cancel",
+      "deleting": "Deleting..."
+    },
+    "deleteSuccess": "Category deleted successfully",
+    "deleteError": "Failed to delete category. Please try again.",
+    "deleteErrorHasCatalogs": "Cannot delete category with existing catalogs. Please remove or reassign catalogs first.",
+    "loadError": "Failed to load categories. Please try again.",
+    "addComingSoon": "Add category dialog coming soon (Task 14)",
+    "editComingSoon": "Edit category dialog coming soon (Task 14)",
+    "dialog": {
+      "createTitle": "Add New Category",
+      "editTitle": "Edit Category",
+      "nameEn": "Name (English)",
+      "nameEnPlaceholder": "Enter category name in English",
+      "nameAr": "Name (Arabic)",
+      "nameArPlaceholder": "Enter category name in Arabic",
+      "slug": "Slug",
+      "slugHelp": "Auto-generated from English name",
+      "cancel": "Cancel",
+      "save": "Save Category",
+      "saving": "Saving...",
+      "validation": {
+        "nameEnRequired": "English name is required",
+        "nameEnMin": "English name must be at least 2 characters",
+        "nameArRequired": "Arabic name is required",
+        "nameArMin": "Arabic name must be at least 2 characters"
+      }
+    },
+    "createSuccess": "Category created successfully",
+    "createError": "Failed to create category. Please try again.",
+    "updateSuccess": "Category updated successfully",
+    "updateError": "Failed to update category. Please try again."
+  },
+  "catalogs": {
+    "title": "Catalogs",
+    "description": "Manage product catalogs and PDF documents",
+    "uploadCatalog": "Upload Catalog",
+    "editCatalog": "Edit catalog",
+    "deleteCatalog": "Delete catalog",
+    "tableTitle": "All Catalogs",
+    "tableDescription": "{{count}} catalogs total",
+    "tableDescriptionEmpty": "No catalogs yet",
+    "search": "Search catalogs...",
+    "filterByCategory": "Filter by category",
+    "allCategories": "All Categories",
+    "table": {
+      "thumbnail": "Thumbnail",
+      "titleEn": "Title (English)",
+      "titleAr": "Title (Arabic)",
+      "category": "Category",
+      "fileSize": "File Size",
+      "createdAt": "Created",
+      "actions": "Actions"
+    },
+    "emptyState": {
+      "title": "No catalogs yet",
+      "description": "Get started by uploading your first product catalog"
+    },
+    "deleteDialog": {
+      "title": "Delete Catalog",
+      "description": "Are you sure you want to delete \"{{name}}\"? This will remove the PDF and thumbnail files. This action cannot be undone.",
+      "confirm": "Delete",
+      "cancel": "Cancel",
+      "deleting": "Deleting..."
+    },
+    "deleteSuccess": "Catalog deleted successfully",
+    "deleteError": "Failed to delete catalog. Please try again.",
+    "loadError": "Failed to load catalogs. Please try again.",
+    "uploadComingSoon": "Upload catalog dialog coming soon (Task 17)",
+    "editComingSoon": "Edit catalog dialog coming soon (Task 17)",
+    "dialog": {
+      "createTitle": "Upload New Catalog",
+      "editTitle": "Edit Catalog",
+      "titleEn": "Title (English)",
+      "titleEnPlaceholder": "Enter catalog title in English",
+      "titleAr": "Title (Arabic)",
+      "titleArPlaceholder": "Enter catalog title in Arabic",
+      "category": "Category",
+      "categoryPlaceholder": "Select a category",
+      "pdfFile": "PDF File",
+      "pdfUploadText": "Drag and drop PDF file here",
+      "pdfUploadHint": "or click to browse (Max 10MB)",
+      "pdfEditHint": "Leave empty to keep existing PDF file",
+      "thumbnail": "Thumbnail Image",
+      "thumbnailUploadText": "Drag and drop thumbnail image here",
+      "thumbnailUploadHint": "PNG, JPG, or WebP (Max 2MB)",
+      "thumbnailEditHint": "Leave empty to keep existing thumbnail",
+      "selectFile": "Select File",
+      "uploading": "Uploading...",
+      "cancel": "Cancel",
+      "save": "Save Catalog",
+      "saving": "Saving...",
+      "validation": {
+        "titleEnRequired": "English title is required",
+        "titleEnMin": "English title must be at least 3 characters",
+        "titleArRequired": "Arabic title is required",
+        "titleArMin": "Arabic title must be at least 3 characters",
+        "categoryRequired": "Category is required",
+        "pdfRequired": "PDF file is required",
+        "pdfType": "Only PDF files are allowed",
+        "pdfSize": "PDF file must be less than 10MB",
+        "thumbnailRequired": "Thumbnail image is required",
+        "thumbnailType": "Only PNG, JPG, and WebP images are allowed",
+        "thumbnailSize": "Thumbnail must be less than 2MB"
+      }
+    },
+    "createSuccess": "Catalog uploaded successfully",
+    "createError": "Failed to upload catalog. Please try again.",
+    "updateSuccess": "Catalog updated successfully",
+    "updateError": "Failed to update catalog. Please try again."
+  },
+  "contactSubmissions": {
+    "title": "Contact Submissions",
+    "description": "View and manage contact form submissions from website visitors",
+    "tableTitle": "All Submissions",
+    "tableDescription": "{{count}} submissions total",
+    "tableDescriptionEmpty": "No submissions yet",
+    "search": "Search by name, email, or subject...",
+    "table": {
+      "date": "Date",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "subject": "Subject",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "status": {
+      "new": "New",
+      "read": "Read",
+      "responded": "Responded"
+    },
+    "markAsRead": "Mark as Read",
+    "markAsReadSuccess": "Submission marked as read",
+    "markAsReadError": "Failed to mark submission as read. Please try again.",
+    "details": {
+      "submittedAt": "Submitted At",
+      "readAt": "Read At",
+      "message": "Message"
+    },
+    "emptyState": {
+      "title": "No submissions yet",
+      "description": "Contact form submissions will appear here",
+      "noResults": "No submissions match your search"
+    },
+    "loadError": "Failed to load submissions. Please try again."
+  }
+}

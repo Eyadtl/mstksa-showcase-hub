@@ -10,5 +10,14 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+# Robots.txt for MST-KSA Website
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /auth
+
+# Sitemap location
+Sitemap: https://mst-ksa.com/sitemap.xml
+
+# Crawl-delay (optional, helps prevent server overload)
+Crawl-delay: 1

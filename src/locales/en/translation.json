@@ -1,0 +1,52 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search",
+    "filter": "Filter",
+    "close": "Close",
+    "submit": "Submit",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "errors": {
+    "required": "This field is required",
+    "invalidEmail": "Invalid email address",
+    "minLength": "Must be at least {{count}} characters",
+    "maxLength": "Must be at most {{count}} characters",
+    "networkError": "Network error. Please try again.",
+    "unknownError": "Something went wrong. Please try again."
+  },
+  "success": {
+    "saved": "Saved successfully",
+    "deleted": "Deleted successfully",
+    "updated": "Updated successfully",
+    "created": "Created successfully"
+  },
+  "seo": {
+    "home": {
+      "title": "Home",
+      "description": "MST-KSA: Leading steel manufacturing company specializing in essential steel products for diverse industries across Saudi Arabia. Quality craftsmanship, trusted by Aramco, Sisko, and more.",
+      "keywords": "steel manufacturing, Saudi Arabia, MST-KSA, steel products, industrial steel, Aramco supplier, steel fabrication"
+    },
+    "catalogs": {
+      "title": "Product Catalogs",
+      "description": "Browse our comprehensive collection of steel product catalogs. Download detailed specifications, technical data, and product information for all our steel manufacturing solutions.",
+      "keywords": "steel catalogs, product specifications, steel products, technical data, manufacturing catalogs, steel documentation"
+    },
+    "auth": {
+      "title": "Admin Login",
+      "description": "Secure login portal for MST-KSA administrators to manage website content, catalogs, and customer inquiries."
+    }
+  }
+}

@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface Metric {
-  label: string;
+  labelKey: string;
   value: number;
   suffix: string;
 }
 
 const MetricsSection = () => {
+  const { t } = useLanguage();
+  
   const metrics: Metric[] = [
-    { label: "Years in Business", value: 25, suffix: "+" },
-    { label: "Projects Completed", value: 500, suffix: "+" },
-    { label: "Satisfied Clients", value: 150, suffix: "+" },
+    { labelKey: "common:metrics.yearsInBusiness", value: 25, suffix: "+" },
+    { labelKey: "common:metrics.projectsCompleted", value: 500, suffix: "+" },
+    { labelKey: "common:metrics.satisfiedClients", value: 150, suffix: "+" },
   ];
 
   const [counts, setCounts] = useState(metrics.map(() => 0));
@@ -47,24 +50,29 @@ const MetricsSection = () => {
   }, []);
 
   return (
-    <section className="py-20 gradient-steel">
+    <section className="py-20 gradient-steel" aria-labelledby="metrics-heading">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-primary-foreground brand-serif">
-          Our Track Record
+        <h2 id="metrics-heading" className="text-4xl md:text-5xl font-bold text-center mb-16 text-primary-foreground brand-serif">
+          {t("common:metrics.title")}
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8" role="list">
           {metrics.map((metric, index) => (
             <div
               key={index}
               className="text-center p-8 bg-background/5 backdrop-blur-sm rounded-xl border border-primary-foreground/10"
+              role="listitem"
             >
-              <div className="text-5xl md:text-6xl font-bold text-primary-foreground mb-2 brand-serif">
-                {counts[index]}
+              <div 
+                className="text-5xl md:text-6xl font-bold text-primary-foreground mb-2 brand-serif text-center"
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                {counts[index].toLocaleString()}
                 {metric.suffix}
               </div>
-              <div className="text-lg text-primary-foreground/80 font-medium">
-                {metric.label}
+              <div className="text-lg text-primary-foreground/80 font-medium text-center">
+                {t(metric.labelKey)}
               </div>
             </div>
           ))}

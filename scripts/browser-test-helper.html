@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MST-KSA Browser Compatibility Test Helper</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #f5f5f5;
+        }
+        
+        h1 {
+            color: #DC2626;
+            margin-bottom: 20px;
+        }
+        
+        .section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .test-item {
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #ddd;
+            padding-left: 15px;
+        }
+        
+        .test-item.pass {
+            border-left-color: #10b981;
+            background: #f0fdf4;
+        }
+        
+        .test-item.fail {
+            border-left-color: #ef4444;
+            background: #fef2f2;
+        }
+        
+        .test-item.warning {
+            border-left-color: #f59e0b;
+            background: #fffbeb;
+        }
+        
+        button {
+            background: #DC2626;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background: #b91c1c;
+        }
+        
+        .info {
+            background: #eff6ff;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        code {
+            background: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .card {
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .card h3 {
+            margin-bottom: 10px;
+            color: #374151;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .status.pass {
+            background: #10b981;
+            color: white;
+        }
+        
+        .status.fail {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .status.unknown {
+            background: #6b7280;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 MST-KSA Browser Compatibility Test Helper</h1>
+    
+    <div class="info">
+        <strong>Purpose:</strong> This page helps you quickly test browser features and compatibility for the MST-KSA website.
+        Open this page in different browsers to see which features are supported.
+    </div>
+    
+    <div class="section">
+        <h2>Browser Information</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Browser</h3>
+                <p id="browser-name">Detecting...</p>
+            </div>
+            <div class="card">
+                <h3>Version</h3>
+                <p id="browser-version">Detecting...</p>
+            </div>
+            <div class="card">
+                <h3>Platform</h3>
+                <p id="platform">Detecting...</p>
+            </div>
+            <div class="card">
+                <h3>Screen Size</h3>
+                <p id="screen-size">Detecting...</p>
+            </div>
+            <div class="card">
+                <h3>Viewport Size</h3>
+                <p id="viewport-size">Detecting...</p>
+            </div>
+            <div class="card">
+                <h3>Device Type</h3>
+                <p id="device-type">Detecting...</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Feature Support Tests</h2>
+        <div id="feature-tests"></div>
+    </div>
+    
+    <div class="section">
+        <h2>CSS Feature Tests</h2>
+        <div id="css-tests"></div>
+    </div>
+    
+    <div class="section">
+        <h2>Interactive Tests</h2>
+        <button onclick="testLocalStorage()">Test LocalStorage</button>
+        <button onclick="testClipboard()">Test Clipboard API</button>
+        <button onclick="testFileAPI()">Test File API</button>
+        <button onclick="testPDFViewer()">Test PDF Viewer</button>
+        <button onclick="testRTL()">Test RTL Layout</button>
+        <div id="interactive-results" style="margin-top: 15px;"></div>
+    </div>
+    
+    <div class="section">
+        <h2>Performance Tests</h2>
+        <button onclick="testPerformance()">Run Performance Tests</button>
+        <div id="performance-results" style="margin-top: 15px;"></div>
+    </div>
+
+    <script>
+        // Detect browser information
+        function detectBrowser() {
+            const ua = navigator.userAgent;
+            let browserName = 'Unknown';
+            let browserVersion = 'Unknown';
+            
+            if (ua.indexOf('Firefox') > -1) {
+                browserName = 'Firefox';
+                browserVersion = ua.match(/Firefox\/(\d+\.\d+)/)?.[1] || 'Unknown';
+            } else if (ua.indexOf('Edg') > -1) {
+                browserName = 'Edge';
+                browserVersion = ua.match(/Edg\/(\d+\.\d+)/)?.[1] || 'Unknown';
+            } else if (ua.indexOf('Chrome') > -1) {
+                browserName = 'Chrome';
+                browserVersion = ua.match(/Chrome\/(\d+\.\d+)/)?.[1] || 'Unknown';
+            } else if (ua.indexOf('Safari') > -1) {
+                browserName = 'Safari';
+                browserVersion = ua.match(/Version\/(\d+\.\d+)/)?.[1] || 'Unknown';
+            }
+            
+            document.getElementById('browser-name').textContent = browserName;
+            document.getElementById('browser-version').textContent = browserVersion;
+            document.getElementById('platform').textContent = navigator.platform;
+            document.getElementById('screen-size').textContent = `${screen.width} x ${screen.height}`;
+            document.getElementById('viewport-size').textContent = `${window.innerWidth} x ${window.innerHeight}`;
+            
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+            const isTablet = /iPad|Android/i.test(ua) && window.innerWidth >= 768;
+            document.getElementById('device-type').textContent = isMobile ? (isTablet ? 'Tablet' : 'Mobile') : 'Desktop';
+        }
+        
+        // Feature detection tests
+        function runFeatureTests() {
+            const tests = [
+                { name: 'CSS Grid', test: () => CSS.supports('display', 'grid') },
+                { name: 'CSS Flexbox', test: () => CSS.supports('display', 'flex') },
+                { name: 'CSS Variables', test: () => CSS.supports('--test', '0') },
+                { name: 'Backdrop Filter', test: () => CSS.supports('backdrop-filter', 'blur(10px)') },
+                { name: 'LocalStorage', test: () => typeof Storage !== 'undefined' },
+                { name: 'SessionStorage', test: () => typeof sessionStorage !== 'undefined' },
+                { name: 'Clipboard API', test: () => navigator.clipboard !== undefined },
+                { name: 'File API', test: () => typeof File !== 'undefined' },
+                { name: 'Fetch API', test: () => typeof fetch !== 'undefined' },
+                { name: 'Promise', test: () => typeof Promise !== 'undefined' },
+                { name: 'Async/Await', test: () => {
+                    try {
+                        eval('(async () => {})');
+                        return true;
+                    } catch (e) {
+                        return false;
+                    }
+                }},
+                { name: 'ES6 Modules', test: () => 'noModule' in document.createElement('script') },
+                { name: 'Service Worker', test: () => 'serviceWorker' in navigator },
+                { name: 'WebP Support', test: () => {
+                    const canvas = document.createElement('canvas');
+                    return canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+                }},
+                { name: 'Touch Events', test: () => 'ontouchstart' in window },
+                { name: 'Pointer Events', test: () => 'PointerEvent' in window },
+                { name: 'Intersection Observer', test: () => 'IntersectionObserver' in window },
+                { name: 'ResizeObserver', test: () => 'ResizeObserver' in window },
+            ];
+            
+            const container = document.getElementById('feature-tests');
+            container.innerHTML = '';
+            
+            tests.forEach(({ name, test }) => {
+                const result = test();
+                const div = document.createElement('div');
+                div.className = `test-item ${result ? 'pass' : 'fail'}`;
+                div.innerHTML = `
+                    <strong>${name}:</strong> 
+                    <span class="status ${result ? 'pass' : 'fail'}">${result ? '✓ Supported' : '✗ Not Supported'}</span>
+                `;
+                container.appendChild(div);
+            });
+        }
+        
+        // CSS feature tests
+        function runCSSTests() {
+            const tests = [
+                { name: 'CSS Grid', prop: 'display', value: 'grid' },
+                { name: 'CSS Flexbox', prop: 'display', value: 'flex' },
+                { name: 'CSS Variables', prop: '--test', value: '0' },
+                { name: 'Backdrop Filter', prop: 'backdrop-filter', value: 'blur(10px)' },
+                { name: 'CSS Transforms', prop: 'transform', value: 'rotate(45deg)' },
+                { name: 'CSS Transitions', prop: 'transition', value: 'all 0.3s' },
+                { name: 'CSS Animations', prop: 'animation', value: 'test 1s' },
+                { name: 'CSS Calc', prop: 'width', value: 'calc(100% - 20px)' },
+                { name: 'CSS Object Fit', prop: 'object-fit', value: 'cover' },
+                { name: 'CSS Position Sticky', prop: 'position', value: 'sticky' },
+            ];
+            
+            const container = document.getElementById('css-tests');
+            container.innerHTML = '';
+            
+            tests.forEach(({ name, prop, value }) => {
+                const result = CSS.supports(prop, value);
+                const div = document.createElement('div');
+                div.className = `test-item ${result ? 'pass' : 'fail'}`;
+                div.innerHTML = `
+                    <strong>${name}:</strong> 
+                    <span class="status ${result ? 'pass' : 'fail'}">${result ? '✓ Supported' : '✗ Not Supported'}</span>
+                    <code>${prop}: ${value}</code>
+                `;
+                container.appendChild(div);
+            });
+        }
+        
+        // Interactive tests
+        function testLocalStorage() {
+            const results = document.getElementById('interactive-results');
+            try {
+                localStorage.setItem('test', 'value');
+                const value = localStorage.getItem('test');
+                localStorage.removeItem('test');
+                results.innerHTML = '<div class="test-item pass"><strong>LocalStorage:</strong> ✓ Working correctly</div>';
+            } catch (e) {
+                results.innerHTML = `<div class="test-item fail"><strong>LocalStorage:</strong> ✗ Error: ${e.message}</div>`;
+            }
+        }
+        
+        async function testClipboard() {
+            const results = document.getElementById('interactive-results');
+            try {
+                await navigator.clipboard.writeText('Test');
+                results.innerHTML = '<div class="test-item pass"><strong>Clipboard API:</strong> ✓ Working correctly (text copied)</div>';
+            } catch (e) {
+                results.innerHTML = `<div class="test-item fail"><strong>Clipboard API:</strong> ✗ Error: ${e.message}</div>`;
+            }
+        }
+        
+        function testFileAPI() {
+            const results = document.getElementById('interactive-results');
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.onchange = (e) => {
+                if (e.target.files.length > 0) {
+                    results.innerHTML = '<div class="test-item pass"><strong>File API:</strong> ✓ Working correctly</div>';
+                }
+            };
+            input.click();
+        }
+        
+        function testPDFViewer() {
+            const results = document.getElementById('interactive-results');
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = 'data:application/pdf;base64,JVBERi0xLjQKJeLjz9MKMSAwIG9iago8PC9UeXBlL0NhdGFsb2cvUGFnZXMgMiAwIFI+PgplbmRvYmoKMiAwIG9iago8PC9UeXBlL1BhZ2VzL0NvdW50IDEvS2lkc1szIDAgUl0+PgplbmRvYmoKMyAwIG9iago8PC9UeXBlL1BhZ2UvTWVkaWFCb3hbMCAwIDMgM10+PgplbmRvYmoKeHJlZgowIDQKMDAwMDAwMDAwMCA2NTUzNSBmCjAwMDAwMDAwMTAgMDAwMDAgbgowMDAwMDAwMDUzIDAwMDAwIG4KMDAwMDAwMDEwMiAwMDAwMCBuCnRyYWlsZXIKPDwvU2l6ZSA0L1Jvb3QgMSAwIFI+PgpzdGFydHhyZWYKMTQ5CiUlRU9G';
+            iframe.onload = () => {
+                results.innerHTML = '<div class="test-item pass"><strong>PDF Viewer:</strong> ✓ Browser can display PDFs in iframe</div>';
+                document.body.removeChild(iframe);
+            };
+            iframe.onerror = () => {
+                results.innerHTML = '<div class="test-item fail"><strong>PDF Viewer:</strong> ✗ Browser cannot display PDFs in iframe</div>';
+                document.body.removeChild(iframe);
+            };
+            document.body.appendChild(iframe);
+        }
+        
+        function testRTL() {
+            const results = document.getElementById('interactive-results');
+            const testDiv = document.createElement('div');
+            testDiv.dir = 'rtl';
+            testDiv.style.textAlign = 'right';
+            testDiv.textContent = 'مرحبا بك في MST-KSA';
+            testDiv.style.padding = '10px';
+            testDiv.style.background = '#f0fdf4';
+            testDiv.style.border = '2px solid #10b981';
+            testDiv.style.borderRadius = '6px';
+            testDiv.style.marginTop = '10px';
+            results.innerHTML = '<div class="test-item pass"><strong>RTL Layout:</strong> ✓ Test below (should be right-aligned)</div>';
+            results.appendChild(testDiv);
+        }
+        
+        function testPerformance() {
+            const results = document.getElementById('performance-results');
+            const timing = performance.timing;
+            const loadTime = timing.loadEventEnd - timing.navigationStart;
+            const domReady = timing.domContentLoadedEventEnd - timing.navigationStart;
+            
+            results.innerHTML = `
+                <div class="test-item ${loadTime < 3000 ? 'pass' : 'warning'}">
+                    <strong>Page Load Time:</strong> ${loadTime}ms ${loadTime < 3000 ? '✓' : '⚠️'}
+                </div>
+                <div class="test-item ${domReady < 1500 ? 'pass' : 'warning'}">
+                    <strong>DOM Ready Time:</strong> ${domReady}ms ${domReady < 1500 ? '✓' : '⚠️'}
+                </div>
+                <div class="test-item pass">
+                    <strong>Memory:</strong> ${navigator.deviceMemory || 'Unknown'} GB
+                </div>
+                <div class="test-item pass">
+                    <strong>Hardware Concurrency:</strong> ${navigator.hardwareConcurrency || 'Unknown'} cores
+                </div>
+            `;
+        }
+        
+        // Run tests on load
+        window.addEventListener('load', () => {
+            detectBrowser();
+            runFeatureTests();
+            runCSSTests();
+        });
+        
+        // Update viewport size on resize
+        window.addEventListener('resize', () => {
+            document.getElementById('viewport-size').textContent = `${window.innerWidth} x ${window.innerHeight}`;
+        });
+    </script>
+</body>
+</html>
