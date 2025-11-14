@@ -30,10 +30,14 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const isRTL = i18n.language === 'ar';
 
+  console.log('Dashboard component rendering...');
+
   // Fetch dashboard statistics
   const { data: stats, isLoading: statsLoading, error: statsError } = useQuery({
     queryKey: ['dashboard-stats'],
     queryFn: async () => {
+      console.log('Fetching dashboard stats...');
+      
       const [catalogsResult, categoriesResult, submissionsResult, newSubmissionsResult] = await Promise.all([
         supabase.from('catalogs').select('id', { count: 'exact', head: true }),
         supabase.from('categories').select('id', { count: 'exact', head: true }),
@@ -41,33 +45,66 @@ const Dashboard = () => {
         supabase.from('contact_submissions').select('id', { count: 'exact', head: true }).eq('status', 'new'),
       ]);
 
-      if (catalogsResult.error) throw catalogsResult.error;
-      if (categoriesResult.error) throw categoriesResult.error;
-      if (submissionsResult.error) throw submissionsResult.error;
-      if (newSubmissionsResult.error) throw newSubmissionsResult.error;
+      console.log('Stats results:', {
+        catalogs: catalogsResult,
+        categories: categoriesResult,
+        submissions: submissionsResult,
+        newSubmissions: newSubmissionsResult
+      });
 
-      return {
+      if (catalogsResult.error) {
+        console.error('Catalogs error:', catalogsResult.error);
+        throw catalogsResult.error;
+      }
+      if (categoriesResult.error) {
+        console.error('Categories error:', categoriesResult.error);
+        throw categoriesResult.error;
+      }
+      if (submissionsResult.error) {
+        console.error('Submissions error:', submissionsResult.error);
+        throw submissionsResult.error;
+      }
+      if (newSubmissionsResult.error) {
+        console.error('New submissions error:', newSubmissionsResult.error);
+        throw newSubmissionsResult.error;
+      }
+
+      const result = {
         totalCatalogs: catalogsResult.count || 0,
         totalCategories: categoriesResult.count || 0,
         totalSubmissions: submissionsResult.count || 0,
         newSubmissions: newSubmissionsResult.count || 0,
       };
+      
+      console.log('Dashboard stats loaded:', result);
+      return result;
     },
+    retry: 1,
+    staleTime: 30000,
   });
 
   // Fetch recent contact submissions
   const { data: recentSubmissions, isLoading: submissionsLoading, error: submissionsError } = useQuery<ContactSubmission[]>({
     queryKey: ['recent-submissions'],
     queryFn: async () => {
+      console.log('Fetching recent submissions...');
+      
       const { data, error } = await supabase
         .from('contact_submissions')
         .select('*')
         .order('created_at', { ascending: false })
         .limit(5);
 
-      if (error) throw error;
+      if (error) {
+        console.error('Recent submissions error:', error);
+        throw error;
+      }
+      
+      console.log('Recent submissions loaded:', data?.length || 0, 'items');
       return data as ContactSubmission[];
     },
+    retry: 1,
+    staleTime: 30000,
   });
 
   const isLoading = statsLoading || submissionsLoading;

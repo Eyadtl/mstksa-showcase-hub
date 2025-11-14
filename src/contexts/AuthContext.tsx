@@ -43,15 +43,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
    */
   const fetchUserProfile = async (authUser: SupabaseUser): Promise<User | null> => {
     try {
-      const { data: profile, error } = await supabase
+      console.log('Fetching profile for user:', authUser.email);
+      
+      // Add timeout to prevent hanging
+      const timeoutPromise = new Promise<never>((_, reject) => 
+        setTimeout(() => reject(new Error('Profile fetch timeout')), 5000)
+      );
+      
+      const fetchPromise = supabase
         .from('profiles')
         .select('*')
         .eq('id', authUser.id)
         .single<Profile>();
+      
+      const { data: profile, error } = await Promise.race([fetchPromise, timeoutPromise]) as any;
 
       if (error) {
-        // If profile doesn't exist (PGRST116), create a default user object
+        console.error('Error fetching profile:', error);
+        // If profile doesn't exist (PGRST116), return default user
         if (error.code === 'PGRST116') {
+          console.log('Profile not found, returning default user');
           return {
             id: authUser.id,
             email: authUser.email || '',
@@ -59,8 +70,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           };
         }
         
-        // Log other errors but don't throw
-        handleError(error, 'fetch user profile', { showToast: false });
+        // For other errors, return default user
+        console.log('Profile fetch error, returning default user');
         return {
           id: authUser.id,
           email: authUser.email || '',
@@ -69,6 +80,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
 
       if (!profile) {
+        console.log('No profile data, returning default user');
         return {
           id: authUser.id,
           email: authUser.email || '',
@@ -76,14 +88,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         };
       }
 
+      console.log('Profile loaded successfully:', profile.email, profile.role);
       return {
         id: profile.id,
         email: profile.email,
         role: profile.role,
       };
     } catch (error) {
-      handleError(error, 'fetch user profile', { showToast: false });
-      return null;
+      console.error('Exception in fetchUserProfile:', error);
+      // Return default user on any exception
+      return {
+        id: authUser.id,
+        email: authUser.email || '',
+        role: 'user',
+      };
     }
   };
 
@@ -230,6 +248,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
    */
   const ensureProfileExists = async (authUser: SupabaseUser): Promise<void> => {
     try {
+      console.log('Checking if profile exists for:', authUser.email);
+      
       // Check if profile exists
       const { error: fetchError } = await supabase
         .from('profiles')
@@ -237,25 +257,32 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         .eq('id', authUser.id)
         .single();
 
-      // If profile doesn't exist (PGRST116), create it
-      if (fetchError && fetchError.code === 'PGRST116') {
-        const newProfile: ProfileInsert = {
-          email: authUser.email || '',
-          role: 'user',
-        };
+      if (fetchError) {
+        console.log('Profile check error:', fetchError.code, fetchError.message);
+        
+        // If profile doesn't exist (PGRST116), create it
+        if (fetchError.code === 'PGRST116') {
+          console.log('Profile does not exist, creating...');
+          const newProfile: ProfileInsert = {
+            email: authUser.email || '',
+            role: 'user',
+          };
 
-        const { error: insertError } = await supabase
-          .from('profiles')
-          .insert(newProfile as any);
+          const { error: insertError } = await supabase
+            .from('profiles')
+            .insert(newProfile as any);
 
-        if (insertError) {
-          handleError(insertError, 'create profile for OAuth user', { showToast: false });
-        } else {
-          console.log('Profile created for OAuth user:', authUser.email);
+          if (insertError) {
+            console.error('Error creating profile:', insertError);
+          } else {
+            console.log('Profile created successfully for:', authUser.email);
+          }
         }
+      } else {
+        console.log('Profile already exists for:', authUser.email);
       }
     } catch (error) {
-      handleError(error, 'ensure profile exists', { showToast: false });
+      console.error('Exception in ensureProfileExists:', error);
     }
   };
 
@@ -264,27 +291,36 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
    * This maintains the session and updates user state when auth state changes
    */
   useEffect(() => {
+    let mounted = true;
+
     // Check for existing session on mount
     const initializeAuth = async () => {
       try {
+        console.log('Initializing auth...');
         const { data: { session }, error } = await supabase.auth.getSession();
 
         if (error) {
-          handleError(error, 'initialize authentication', { showToast: false });
-          setLoading(false);
+          console.error('Error getting session:', error);
+          if (mounted) setLoading(false);
           return;
         }
 
-        if (session?.user) {
-          // Ensure profile exists (important for OAuth users)
-          await ensureProfileExists(session.user);
+        if (session?.user && mounted) {
+          console.log('Session found for user:', session.user.email);
+          // Skip ensureProfileExists - profiles are created by database trigger
           const userProfile = await fetchUserProfile(session.user);
+          console.log('User profile loaded:', userProfile);
           setUser(userProfile);
+        } else {
+          console.log('No session found');
         }
       } catch (error) {
-        handleError(error, 'initialize authentication', { showToast: false });
+        console.error('Error initializing auth:', error);
       } finally {
-        setLoading(false);
+        if (mounted) {
+          console.log('Auth initialization complete');
+          setLoading(false);
+        }
       }
     };
 
@@ -293,23 +329,32 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // Listen for auth state changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
-        console.log('Auth state changed:', event);
+        console.log('Auth state changed:', event, session?.user?.email);
+
+        if (!mounted) {
+          console.log('Component unmounted, skipping auth state change');
+          return;
+        }
 
         try {
           if (session?.user) {
-            // Ensure profile exists for OAuth users
-            if (event === 'SIGNED_IN' || event === 'USER_UPDATED') {
-              await ensureProfileExists(session.user);
-            }
+            console.log('Processing auth state change for user:', session.user.email);
             
+            // Skip ensureProfileExists - it's causing hangs
+            // Profiles are created by database trigger on signup
+            
+            console.log('Fetching user profile...');
             const userProfile = await fetchUserProfile(session.user);
+            console.log('Setting user state:', userProfile);
             setUser(userProfile);
           } else {
+            console.log('No session, clearing user');
             setUser(null);
           }
         } catch (error) {
-          handleError(error, 'handle auth state change', { showToast: false });
+          console.error('Error handling auth state change:', error);
         } finally {
+          console.log('Setting loading to false');
           setLoading(false);
         }
       }
@@ -317,6 +362,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     // Cleanup subscription on unmount
     return () => {
+      mounted = false;
       subscription.unsubscribe();
     };
   }, []);
