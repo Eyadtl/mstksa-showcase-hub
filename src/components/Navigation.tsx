@@ -73,6 +73,18 @@ const Navigation = ({ onContactClick }: NavigationProps) => {
               {t("navigation:contact")}
             </Button>
 
+            {/* Login Button - Only show when user is not authenticated */}
+            {!user && (
+              <Link to="/auth">
+                <Button
+                  variant="outline"
+                  className="font-semibold transition-smooth"
+                >
+                  {t("navigation:login")}
+                </Button>
+              </Link>
+            )}
+
             {/* Language Switcher */}
             <Button
               variant="outline"
@@ -163,6 +175,19 @@ const Navigation = ({ onContactClick }: NavigationProps) => {
             >
               {t("navigation:contact")}
             </Button>
+            
+            {/* Login Button - Only show when user is not authenticated */}
+            {!user && (
+              <Link to="/auth" onClick={() => setIsOpen(false)}>
+                <Button
+                  variant="outline"
+                  className="w-full font-semibold transition-smooth"
+                  role="menuitem"
+                >
+                  {t("navigation:login")}
+                </Button>
+              </Link>
+            )}
           </div>
         )}
       </div>
