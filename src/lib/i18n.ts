@@ -8,6 +8,8 @@ import enForms from '../locales/en/forms.json';
 import enCatalogs from '../locales/en/catalogs.json';
 import enCommon from '../locales/en/common.json';
 import enAdmin from '../locales/en/admin.json';
+import enMvs from '../locales/en/mvs.json';
+import enProducts from '../locales/en/products.json';
 
 import arTranslation from '../locales/ar/translation.json';
 import arNavigation from '../locales/ar/navigation.json';
@@ -15,6 +17,8 @@ import arForms from '../locales/ar/forms.json';
 import arCatalogs from '../locales/ar/catalogs.json';
 import arCommon from '../locales/ar/common.json';
 import arAdmin from '../locales/ar/admin.json';
+import arMvs from '../locales/ar/mvs.json';
+import arProducts from '../locales/ar/products.json';
 
 // Define resources
 const resources = {
@@ -25,6 +29,8 @@ const resources = {
     catalogs: enCatalogs,
     common: enCommon,
     admin: enAdmin,
+    mvs: enMvs,
+    products: enProducts,
   },
   ar: {
     translation: arTranslation,
@@ -33,6 +39,8 @@ const resources = {
     catalogs: arCatalogs,
     common: arCommon,
     admin: arAdmin,
+    mvs: arMvs,
+    products: arProducts,
   },
 };
 
@@ -53,7 +61,7 @@ i18n
     lng: getStoredLanguage(), // Language to use (from localStorage or default)
     fallbackLng: 'en', // Fallback language if translation is missing
     defaultNS: 'translation', // Default namespace
-    ns: ['translation', 'navigation', 'forms', 'catalogs', 'common', 'admin'], // Available namespaces
+    ns: ['translation', 'navigation', 'forms', 'catalogs', 'common', 'admin', 'mvs', 'products'], // Available namespaces
     
     interpolation: {
       escapeValue: false, // React already escapes values

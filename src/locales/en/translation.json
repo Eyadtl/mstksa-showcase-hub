@@ -17,7 +17,14 @@
     "previous": "Previous",
     "confirm": "Confirm",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "hero": {
+      "headline": "MATERIAL SOLUTION TECHNOLOGY CO.LTD",
+      "tagline": "Leading steel manufacturing excellence across Saudi Arabia",
+      "cta": {
+        "primary": "Explore Our Products"
+      }
+    }
   },
   "errors": {
     "required": "This field is required",

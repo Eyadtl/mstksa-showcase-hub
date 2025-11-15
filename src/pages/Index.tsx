@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import VideoHeroSection from "@/components/VideoHeroSection";
+import MissionVisionStrategy from "@/components/MissionVisionStrategy";
+import ProductsSection from "@/components/ProductsSection";
 import ClientsCarousel from "@/components/ClientsCarousel";
 import ServicesSection from "@/components/ServicesSection";
 import MetricsSection from "@/components/MetricsSection";
@@ -27,9 +29,13 @@ const Index = () => {
       <Navigation onContactClick={() => setContactOpen(true)} />
       <main id="main-content">
         <VideoHeroSection
-          videoSrc="/background video.mp4"
-          fallbackImage="/background-video-poster.jpg"
+          videoSrc=""
+          fallbackImage="/Bacground.jpg"
+          enableVideoOnMobile={false}
+          overlayOpacity={0.7}
         />
+        <MissionVisionStrategy />
+        <ProductsSection />
         <ClientsCarousel />
         <ServicesSection />
         <MetricsSection />

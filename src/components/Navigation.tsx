@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Moon, Sun, Languages } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Menu, X, Moon, Sun, Languages, LogOut } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "next-themes";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useAuth } from "@/contexts/AuthContext";
+import { useToast } from "@/hooks/use-toast";
 
 interface NavigationProps {
   onContactClick: () => void;
@@ -14,7 +15,9 @@ const Navigation = ({ onContactClick }: NavigationProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const { language, setLanguage, t } = useLanguage();
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
+  const { toast } = useToast();
+  const navigate = useNavigate();
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -22,6 +25,24 @@ const Navigation = ({ onContactClick }: NavigationProps) => {
 
   const toggleLanguage = () => {
     setLanguage(language === "en" ? "ar" : "en");
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      toast({
+        title: t("navigation:logout"),
+        description: "You have been logged out successfully",
+      });
+      navigate("/");
+      setIsOpen(false);
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Logout Failed",
+        description: error instanceof Error ? error.message : "Failed to log out",
+      });
+    }
   };
 
   const navLinks = [
@@ -73,8 +94,8 @@ const Navigation = ({ onContactClick }: NavigationProps) => {
               {t("navigation:contact")}
             </Button>
 
-            {/* Login Button - Only show when user is not authenticated */}
-            {!user && (
+            {/* Login/Logout Button */}
+            {!user ? (
               <Link to="/auth">
                 <Button
                   variant="outline"
@@ -83,6 +104,16 @@ const Navigation = ({ onContactClick }: NavigationProps) => {
                   {t("navigation:login")}
                 </Button>
               </Link>
+            ) : (
+              <Button
+                variant="outline"
+                onClick={handleLogout}
+                className="font-semibold transition-smooth"
+                aria-label={t("navigation:logout")}
+              >
+                <LogOut className="h-4 w-4 mr-2 rtl:mr-0 rtl:ml-2" aria-hidden="true" />
+                {t("navigation:logout")}
+              </Button>
             )}
 
             {/* Language Switcher */}
@@ -176,8 +207,8 @@ const Navigation = ({ onContactClick }: NavigationProps) => {
               {t("navigation:contact")}
             </Button>
             
-            {/* Login Button - Only show when user is not authenticated */}
-            {!user && (
+            {/* Login/Logout Button */}
+            {!user ? (
               <Link to="/auth" onClick={() => setIsOpen(false)}>
                 <Button
                   variant="outline"
@@ -187,6 +218,16 @@ const Navigation = ({ onContactClick }: NavigationProps) => {
                   {t("navigation:login")}
                 </Button>
               </Link>
+            ) : (
+              <Button
+                variant="outline"
+                onClick={handleLogout}
+                className="w-full font-semibold transition-smooth"
+                role="menuitem"
+              >
+                <LogOut className="h-4 w-4 mr-2 rtl:mr-0 rtl:ml-2" aria-hidden="true" />
+                {t("navigation:logout")}
+              </Button>
             )}
           </div>
         )}

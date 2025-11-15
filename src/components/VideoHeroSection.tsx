@@ -8,7 +8,7 @@ import VideoBackground from '@/components/VideoBackground';
 import { cn } from '@/lib/utils';
 
 interface VideoHeroSectionProps {
-  videoSrc: string;
+  videoSrc?: string;
   fallbackImage?: string;
   headline?: string;
   tagline?: string;
@@ -21,6 +21,7 @@ interface VideoHeroSectionProps {
   videoOpacity?: number;
   enableVideoOnMobile?: boolean;
   className?: string;
+  useImageBackground?: boolean;
 }
 
 const VideoHeroSection: React.FC<VideoHeroSectionProps> = ({

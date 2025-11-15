@@ -1,0 +1,28 @@
+{
+  "sectionTitle": "Our Products",
+  "sectionSubtitle": "Comprehensive solutions for all your construction and industrial needs",
+  "mep": {
+    "title": "MEP Solution",
+    "description": "Mechanical, Electrical & Plumbing systems for modern infrastructure"
+  },
+  "architectural": {
+    "title": "Architectural",
+    "description": "Premium architectural steel products and structural solutions"
+  },
+  "finishing": {
+    "title": "Finishing Solution",
+    "description": "High-quality finishing materials for perfect project completion"
+  },
+  "chemical": {
+    "title": "Construction Chemical",
+    "description": "Advanced chemical solutions for construction excellence"
+  },
+  "civil": {
+    "title": "Civil Solution",
+    "description": "Comprehensive civil engineering products and materials"
+  },
+  "sustainable": {
+    "title": "Sustainable Solution",
+    "description": "Eco-friendly and sustainable construction materials"
+  }
+}
