@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import HeroSection from "@/components/HeroSection";
+import VideoHeroSection from "@/components/VideoHeroSection";
 import ClientsCarousel from "@/components/ClientsCarousel";
 import ServicesSection from "@/components/ServicesSection";
 import MetricsSection from "@/components/MetricsSection";
@@ -26,7 +26,10 @@ const Index = () => {
       <SkipNavigation />
       <Navigation onContactClick={() => setContactOpen(true)} />
       <main id="main-content">
-        <HeroSection />
+        <VideoHeroSection
+          videoSrc="/background video.mp4"
+          fallbackImage="/background-video-poster.jpg"
+        />
         <ClientsCarousel />
         <ServicesSection />
         <MetricsSection />

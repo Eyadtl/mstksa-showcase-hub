@@ -53,6 +53,45 @@ export default {
           DEFAULT: "hsl(var(--steel))",
           dark: "hsl(var(--steel-dark))",
         },
+        // MST Red color palette for CTAs and accents
+        "mst-red": {
+          50: "#FEF2F2",
+          100: "#FEE2E2",
+          200: "#FECACA",
+          300: "#FCA5A5",
+          400: "#F87171",
+          500: "#DC2626",
+          600: "#C41E3A",
+          700: "#B91C1C",
+          800: "#991B1B",
+          900: "#7F1D1D",
+        },
+        // Beige tones for backgrounds and cards
+        "mst-beige": {
+          50: "#FDFCFB",
+          100: "#FAF8F5",
+          200: "#F5F1E8",
+          300: "#EDE6D8",
+          400: "#E3D5C0",
+          500: "#D2B48C",
+          600: "#C4A678",
+          700: "#B08D5F",
+          800: "#8B7049",
+          900: "#6B5639",
+        },
+        // Steel industry grays
+        "steel-gray": {
+          50: "#F8FAFC",
+          100: "#F1F5F9",
+          200: "#E2E8F0",
+          300: "#CBD5E1",
+          400: "#94A3B8",
+          500: "#64748B",
+          600: "#475569",
+          700: "#334155",
+          800: "#1E293B",
+          900: "#0F172A",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -63,6 +102,16 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+      },
+      fontFamily: {
+        display: ["Playfair Display", "Georgia", "serif"],
+        body: ["Inter", "system-ui", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"],
+      },
+      fontSize: {
+        "hero-xl": ["7rem", { lineHeight: "1", letterSpacing: "-0.02em" }],
+        "hero-lg": ["5rem", { lineHeight: "1.1", letterSpacing: "-0.01em" }],
+        "hero-md": ["3rem", { lineHeight: "1.2", letterSpacing: "0" }],
       },
       borderRadius: {
         lg: "var(--radius)",

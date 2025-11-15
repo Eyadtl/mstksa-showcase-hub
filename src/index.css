@@ -53,11 +53,23 @@ All colors MUST be HSL.
     --gradient-hero: linear-gradient(135deg, hsl(0 84% 50% / 0.95), hsl(0 84% 35% / 0.95));
     --gradient-steel: linear-gradient(180deg, hsl(0 70% 55%), hsl(0 70% 35%));
     
+    /* Video overlay gradients for hero section */
+    --gradient-overlay-dark: linear-gradient(180deg, rgba(15, 23, 42, 0.7) 0%, rgba(15, 23, 42, 0.5) 50%, rgba(15, 23, 42, 0.8) 100%);
+    --gradient-overlay-red: linear-gradient(135deg, rgba(220, 38, 38, 0.3) 0%, rgba(196, 30, 58, 0.2) 100%);
+    --gradient-overlay-combined: linear-gradient(180deg, rgba(15, 23, 42, 0.6) 0%, rgba(220, 38, 38, 0.2) 50%, rgba(15, 23, 42, 0.7) 100%);
+    
+    /* Backdrop filters for floating cards */
+    --backdrop-blur-sm: blur(8px);
+    --backdrop-blur-md: blur(12px);
+    --backdrop-blur-lg: blur(16px);
+    
     /* Shadows */
     --shadow-sm: 0 1px 2px hsl(0 0% 0% / 0.05);
     --shadow-md: 0 4px 6px hsl(0 0% 0% / 0.07);
     --shadow-lg: 0 10px 15px hsl(0 0% 0% / 0.1);
     --shadow-red: 0 10px 30px hsl(0 84% 50% / 0.3);
+    --shadow-floating: 0 20px 40px hsl(0 0% 0% / 0.15);
+    --shadow-floating-hover: 0 30px 60px hsl(0 0% 0% / 0.25);
     
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -124,11 +136,23 @@ All colors MUST be HSL.
     --gradient-hero: linear-gradient(135deg, hsl(0 72% 51% / 0.9), hsl(0 72% 30% / 0.9));
     --gradient-steel: linear-gradient(180deg, hsl(210 15% 35%), hsl(210 20% 15%));
     
+    /* Video overlay gradients for hero section - dark mode */
+    --gradient-overlay-dark: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.85) 100%);
+    --gradient-overlay-red: linear-gradient(135deg, rgba(220, 38, 38, 0.4) 0%, rgba(196, 30, 58, 0.3) 100%);
+    --gradient-overlay-combined: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(220, 38, 38, 0.3) 50%, rgba(0, 0, 0, 0.8) 100%);
+    
+    /* Backdrop filters for floating cards - same for dark mode */
+    --backdrop-blur-sm: blur(8px);
+    --backdrop-blur-md: blur(12px);
+    --backdrop-blur-lg: blur(16px);
+    
     /* Shadows - enhanced for dark mode */
     --shadow-sm: 0 1px 2px hsl(0 0% 0% / 0.5);
     --shadow-md: 0 4px 6px hsl(0 0% 0% / 0.6);
     --shadow-lg: 0 10px 15px hsl(0 0% 0% / 0.7);
     --shadow-red: 0 10px 30px hsl(0 72% 51% / 0.3);
+    --shadow-floating: 0 20px 40px hsl(0 0% 0% / 0.4);
+    --shadow-floating-hover: 0 30px 60px hsl(0 0% 0% / 0.5);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -169,10 +193,49 @@ All colors MUST be HSL.
     background: var(--gradient-steel);
   }
   
+  /* Video overlay gradients */
+  .gradient-overlay-dark {
+    background: var(--gradient-overlay-dark);
+  }
+  
+  .gradient-overlay-red {
+    background: var(--gradient-overlay-red);
+  }
+  
+  .gradient-overlay-combined {
+    background: var(--gradient-overlay-combined);
+  }
+  
+  /* Backdrop filters */
+  .backdrop-blur-sm {
+    backdrop-filter: var(--backdrop-blur-sm);
+    -webkit-backdrop-filter: var(--backdrop-blur-sm);
+  }
+  
+  .backdrop-blur-md {
+    backdrop-filter: var(--backdrop-blur-md);
+    -webkit-backdrop-filter: var(--backdrop-blur-md);
+  }
+  
+  .backdrop-blur-lg {
+    backdrop-filter: var(--backdrop-blur-lg);
+    -webkit-backdrop-filter: var(--backdrop-blur-lg);
+  }
+  
+  /* Shadows */
   .shadow-red {
     box-shadow: var(--shadow-red);
   }
   
+  .shadow-floating {
+    box-shadow: var(--shadow-floating);
+  }
+  
+  .shadow-floating-hover {
+    box-shadow: var(--shadow-floating-hover);
+  }
+  
+  /* Transitions */
   .transition-smooth {
     transition: var(--transition-smooth);
   }

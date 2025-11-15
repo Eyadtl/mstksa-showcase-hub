@@ -3,7 +3,13 @@
     "title": "MST-KSA",
     "subtitle": "Precision Steel Manufacturing for the Modern World",
     "description": "Delivering exceptional quality in steel products, trusted by industry leaders across Saudi Arabia",
-    "viewCatalogs": "View Our Catalogs"
+    "viewCatalogs": "View Our Catalogs",
+    "headline": "TRANSFORMING IDEAS INTO REALITY",
+    "tagline": "Steel Industry Excellence",
+    "cta": {
+      "primary": "START",
+      "secondary": "LEARN MORE"
+    }
   },
   "services": {
     "title": "Our Services",
