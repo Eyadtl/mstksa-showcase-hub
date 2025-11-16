@@ -69,10 +69,11 @@ const Navigation = ({ onContactClick }: NavigationProps) => {
             className="flex items-center space-x-3 rtl:space-x-reverse"
             aria-label={t("common:accessibility.companyLogo")}
           >
-            <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center" aria-hidden="true">
-              <span className="text-primary-foreground font-bold text-xl brand-serif">M</span>
-            </div>
-            <span className="text-xl font-bold brand-serif hidden sm:block">MST-KSA</span>
+            <img 
+              src="/LOGO.png" 
+              alt="MST-KSA Logo" 
+              className="h-16 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation */}

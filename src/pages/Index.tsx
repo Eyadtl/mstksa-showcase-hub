@@ -5,9 +5,6 @@ import Footer from "@/components/Footer";
 import VideoHeroSection from "@/components/VideoHeroSection";
 import MissionVisionStrategy from "@/components/MissionVisionStrategy";
 import ProductsSection from "@/components/ProductsSection";
-import ClientsCarousel from "@/components/ClientsCarousel";
-import ServicesSection from "@/components/ServicesSection";
-import MetricsSection from "@/components/MetricsSection";
 import ContactModal from "@/components/ContactModal";
 import SkipNavigation from "@/components/SkipNavigation";
 import { SEO } from "@/components/SEO";
@@ -36,9 +33,6 @@ const Index = () => {
         />
         <MissionVisionStrategy />
         <ProductsSection />
-        <ClientsCarousel />
-        <ServicesSection />
-        <MetricsSection />
       </main>
       <Footer />
       <ContactModal open={contactOpen} onOpenChange={setContactOpen} />
