@@ -47,7 +47,7 @@ const ProductsSection: React.FC = () => {
       id: 'civil-solution',
       title: t('civil.title' as any),
       description: t('civil.description' as any),
-      imageUrl: 'https://images.unsplash.com/photo-1590496793907-4d0b8e5d0e8e?w=800&auto=format&fit=crop&q=80',
+      imageUrl: 'https://images.unsplash.com/photo-1431576901776-e539bd916ba2?w=800&auto=format&fit=crop&q=80',
       href: '#civil-solution',
       themeColor: '0 72% 51%', // MST Red
     },
